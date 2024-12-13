@@ -12,15 +12,18 @@ Le projet "Dice" est une application construite avec Spring Boot permettant de s
 - Choisissez la dernière version de Spring Boot disponible (LTS).
 - Optez pour **Maven** ou **Gradle** comme outil de gestion de dépendances.
 - Ajoutez les dépendances nécessaires : **Spring Web**, **Spring Data JPA**, **H2 Database** .
+Tout a été fait/créé
 
 ### 2. Configuration du projet
 - Configurez l'application pour qu'elle utilise le port **8081**.
 - Donnez un nom (**dice**) au projet dans le fichier de configuration :
   - Utilisez **`application.properties`** ou **`application.yml`** selon votre préférence.
+Tout a été fait ( dans le fichier application.properties dans ce cas car pas de application.yml)
 
 ### 3. Création de la classe `Dice`
 - Implémentez une classe représentant un dé avec les méthodes nécessaires pour effectuer un lancé.
 - Marquez cette classe avec l'annotation `@Component` pour pouvoir l'injecter au besoin.
+Classe créé
 
 ### 4. Création de l'entité `DiceRollLog`
 - Modélisez une entité JPA `DiceRollLog` comprenant les champs suivants :
@@ -29,37 +32,47 @@ Le projet "Dice" est une application construite avec Spring Boot permettant de s
   - **`results`** : Liste ou chaîne des valeurs obtenues. Il existe de nombreuses façons de stocker des valeurs simples (simple String), certaines sont plus élégantes (@ElementCollection) que d'autres, vous pouvez choisir la solution qui vous conviendra.
   - **`timestamp`** : Horodatage du lancé.
 - Utilisez des annotations JPA comme `@Entity`, `@Id`, `@GeneratedValue`, etc.
+Entité créé
 
 ### 5. Création du `Repository`
 - Implémentez une interface héritant de `JpaRepository<DiceRollLog, Long>` pour gérer les interactions avec la base de données.
+Repository créé
 
 ### 6. Création du contrôleur REST pour lancer les dés
 - Implémentez un contrôleur REST annoté avec `@RestController`.
 - Ajoutez les endpoints suivants :
   - **`GET /rollDice`** : Lancer un seul dé.
   - **`GET /rollDices/{X}`** : Lancer X dés (X étant un paramètre dynamique).
+Controlleur créé avec endpoint utilisant la même méthode. rollDice l'utilise avec le paramètre 1 et rollDices avec un paramètre x qui est entré dans l'url
 
 ### 7. Création du `Service`
 - Créez un service marqué avec `@Service` contenant une méthode :
   - Prend en paramètre le nombre de dés à lancer.
   - Retourne les résultats des lancés au contrôleur.
   - Enregistre l’historique des lancés dans la base via le `Repository`.
+Service avec la méthode rollDices créé, prenant le nombre de dés a lancer en paramètre, renvoie une liste avec les résultat et ergistre ce resultat
+dans le repository avec le timetamp
 
 ### 8. Contrôleur pour afficher les historiques
 - Ajoutez un autre contrôleur REST permettant d'afficher l'historique des lancés :
   - **`GET /diceLogs`** : Retourne tous les enregistrements de `DiceRollLog` au format JSON.
+Controleur utilisant la methode findAll du repository
 
 ### 9. Tests et validation
 - Démarrez l'application et testez les endpoints.
 - Vérifiez les résultats dans la base de données et les réponses JSON.
+Tout fonctionne
 
 ### 10. (Bonus) Ajout de fonctionnalités avancées
 - **Swagger** :
   - Ajoutez la dépendance Swagger/OpenAPI.
   - Configurez Swagger pour documenter vos endpoints.
   - Accédez à la documentation sur **`http://localhost:8081/swagger-ui.html`**.
+  La documentation s'affiche bel et bien
 - **Lombok** :
   - Utilisez Lombok pour simplifier les getters, setters et constructeurs de vos entités.
+  Lombok utilisé. Les méthodes getter et setter créé a la base ont été supprimés, puis on ajoute les annotations Getter et Setter
+  On importe uniquement Getter et Setter de Lombok pour ne pas surcharger en imports
 
 ---
 

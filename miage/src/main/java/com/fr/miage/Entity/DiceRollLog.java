@@ -1,9 +1,14 @@
 package com.fr.miage.Entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class DiceRollLog {
 
@@ -17,28 +22,4 @@ public class DiceRollLog {
     private List<Integer> results;
 
     private LocalDateTime timestamp;
-
-    public Long getId() { return id;}
-
-    public void setId(Long id) { this.id = id;}
-
-    public int getDiceCount() { return diceCount;}
-
-    public void setDiceCount(int diceCount) { this.diceCount = diceCount;}
-
-    public List<Integer> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Integer> results) {
-        this.results = results;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
 }
